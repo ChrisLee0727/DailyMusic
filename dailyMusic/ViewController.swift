@@ -9,11 +9,17 @@
 import UIKit
 import MediaPlayer
 
+var logNumber = 0
+
+func log(description: String) {
+    print("Log[" + String(logNumber) + "]: ", description)
+    logNumber += 1
+}
+
 class ViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
 
-    var logNumber = 0
     var isPlay = false
     var musicPlayer = MPMusicPlayerController.applicationMusicPlayer
     
@@ -32,11 +38,9 @@ class ViewController: UIViewController {
             MPMediaLibrary.requestAuthorization { (status) in
                 if status == .authorized {
                     self.userDefaults.set(true, forKey: "authorize")
-                    print("Log[" + String(self.logNumber) + "]: authorized")
-                    self.logNumber += 1
+                    log(description: "authroized")
                 } else {
-                    print("Log[" + String(self.logNumber) + "]: unauthorized(1)")
-                    self.logNumber += 1
+                    log(description: "unauthordized(1)")
                 }
             }
         }
@@ -51,16 +55,14 @@ class ViewController: UIViewController {
             
         case 0:
             currentMusicType = musicType[0]
-            print("Log[" + String(self.logNumber) + "]: music type changed: <" + musicType[0] + ">")
-            self.logNumber += 1
+            log(description: "music type changed \(musicType[0])")
         case 1:
             currentMusicType = musicType[1]
-            print("Log[" + String(self.logNumber) + "]: music type changed: <" + musicType[1] + ">")
-            self.logNumber += 1
+            log(description: "music type changed \(musicType[1])")
+
         default:
             currentMusicType = musicType[0]
-            print("Log[" + String(self.logNumber) + "]: music type changed: <" + musicType[0] + ">")
-            self.logNumber += 1
+            log(description: "music type changed \(musicType[0])")
         }
         
     }
@@ -78,16 +80,14 @@ class ViewController: UIViewController {
                     if first {
                         self.setQuery()
                         first = false
-                        print("Log[" + String(self.logNumber) + "]: first, setQuery()," + self.currentMusicType)
-                        self.logNumber += 1
+                        log(description: "first, setQuery() \(self.currentMusicType)")
                     }
                     self.musicPlayer.play()
                     self.isPlay = true
                 }
             }
         } else {
-            print("Log[" + String(self.logNumber) + "]: unauthorized(2)")
-            self.logNumber += 1
+            log(description: "unauthorized(2)")
         }
     }
         
@@ -127,7 +127,6 @@ class ViewController: UIViewController {
         
         
     }
-    
     
  
 

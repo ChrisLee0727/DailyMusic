@@ -9,10 +9,15 @@
 import Foundation
 import MediaPlayer
 
+//workoutFilter
 let popFilter = MPMediaPropertyPredicate(value: "Pop", forProperty: MPMediaItemPropertyGenre)
 let danceFilter = MPMediaPropertyPredicate(value: "Dance", forProperty: MPMediaItemPropertyGenre)
 let electornicFilter = MPMediaPropertyPredicate(value: "Electronic", forProperty: MPMediaItemPropertyGenre)
 let hiphopFilter = MPMediaPropertyPredicate(value: "Hip-Hop", forProperty: MPMediaItemPropertyGenre)
 let hiphoprapFilter = MPMediaPropertyPredicate(value: "Hip-Hop/Rap", forProperty: MPMediaItemPropertyGenre)
 
-let workoutFilterSet: Set<MPMediaPropertyPredicate> = [popFilter, danceFilter, electornicFilter, hiphopFilter, hiphoprapFilter]
+//let workoutFilterSet: Set<MPMediaPropertyPredicate> = [popFilter, danceFilter, electornicFilter, hiphopFilter, hiphoprapFilter]
+
+workoutFilterSet = MPMediaQuery.songsQuery()
+workoutFileter.addFilterPredicate(predicateByPlaylistName)
+var workoutFilterSet: Set<MPMediaPropertyPredicate> = [popFilter]
